@@ -30,7 +30,6 @@ const theme = createMuiTheme({
   },
 });
 
-// eslint-disable-next-line no-unused-vars
 let authenticated;
 const token = localStorage.FBIdToken;
 if (token) {
@@ -43,33 +42,31 @@ if (token) {
   }
 }
 
-const App = () => {
-  return (
-    <ThemeProvider theme={theme}>
-      <div className="App">
-        <Router>
-          <Navbar />
-          <div className="container">
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <AuthRoute
-                exact
-                path="/login"
-                component={Login}
-                authenticated={authenticated}
-              />
-              <AuthRoute
-                exact
-                path="/signup"
-                component={Signup}
-                authenticated={authenticated}
-              />
-            </Switch>
-          </div>
-        </Router>
-      </div>
-    </ThemeProvider>
-  );
-};
+const App = () => (
+  <ThemeProvider theme={theme}>
+    <div className="App">
+      <Router>
+        <Navbar />
+        <div className="container">
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <AuthRoute
+              exact
+              path="/login"
+              component={Login}
+              authenticated={authenticated}
+            />
+            <AuthRoute
+              exact
+              path="/signup"
+              component={Signup}
+              authenticated={authenticated}
+            />
+          </Switch>
+        </div>
+      </Router>
+    </div>
+  </ThemeProvider>
+);
 
 export default App;

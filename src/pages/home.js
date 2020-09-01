@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 
 // MUI components
@@ -24,10 +23,12 @@ const Home = () => {
   }, []);
 
   const RecentScreamsMarkup = screams ? (
+    /* eslint-disable prettier/prettier */
     screams.map((scream) => <Scream scream={scream} key={scream.screamId} />)
   ) : (
-    <p>Loading...</p>
-  );
+      <p>Loading...</p>
+    );
+  /* eslint-enable prettier/prettier */
 
   return (
     <Grid container spacing={2}>
