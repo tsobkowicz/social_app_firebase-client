@@ -60,7 +60,7 @@ const Login = () => {
     };
     try {
       const { data } = await axios.post('/login', userData);
-      console.log(data);
+      localStorage.setItem('FBIdToken', `Bearer ${data.token}`);
       setLoading(false);
       history.push('/');
     } catch (err) {

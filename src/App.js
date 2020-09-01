@@ -2,9 +2,11 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import './App.css';
+import jwtDecode from 'jwt-decode';
 
 // Components
 import Navbar from './components/Navbar';
+import AuthRoute from './util/AuthRoute';
 
 // Import pages components
 import Home from './pages/home';
@@ -28,6 +30,19 @@ const theme = createMuiTheme({
   },
 });
 
+// eslint-disable-next-line no-unused-vars
+let authenticated;
+const token = localStorage.FBIdToken;
+if (token) {
+  const decodedToken = jwtDecode(token);
+  if (decodedToken.exp * 1000 < Date.now()) {
+    window.location.href = '/login';
+    authenticated = false;
+  } else {
+    authenticated = true;
+  }
+}
+
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
@@ -37,8 +52,18 @@ const App = () => {
           <div className="container">
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/signup" component={Signup} />
+              <AuthRoute
+                exact
+                path="/login"
+                component={Login}
+                authenticated={authenticated}
+              />
+              <AuthRoute
+                exact
+                path="/signup"
+                component={Signup}
+                authenticated={authenticated}
+              />
             </Switch>
           </div>
         </Router>
