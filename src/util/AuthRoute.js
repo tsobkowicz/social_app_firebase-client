@@ -13,7 +13,7 @@ const AuthRoute = ({ component: Component, authenticated, ...rest }) => (
 );
 
 AuthRoute.propTypes = {
-  component: PropTypes.element,
+  component: PropTypes.func,
   authenticated: PropTypes.bool,
 };
 
