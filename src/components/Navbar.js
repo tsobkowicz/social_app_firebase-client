@@ -14,7 +14,9 @@ const useStyles = makeStyles({
 });
 
 const Navbar = () => {
+  // MUI styling
   const classes = useStyles();
+
   return (
     <AppBar>
       <Toolbar className={classes.toolbar}>

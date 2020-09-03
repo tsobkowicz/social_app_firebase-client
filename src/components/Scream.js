@@ -36,8 +36,10 @@ const Scream = ({ scream }) => {
     // commentCount,
   } = scream;
 
+  // Dayjs plugin
   dayjs.extend(relativeTime);
 
+  // MUI styling
   const classes = useStyles();
 
   return (

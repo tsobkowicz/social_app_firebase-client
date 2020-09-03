@@ -6,6 +6,7 @@ import {
   CLEAR_ERRORS,
   LOADING_UI,
   SET_UNAUTHENTICATED,
+  LOADING_USER,
 } from '../types';
 
 // Helper functions
@@ -18,6 +19,7 @@ const setAuthorizationHeader = (token) => {
 
 // Actions
 export const getUserData = () => async (dispatch) => {
+  dispatch({ type: LOADING_USER });
   try {
     const { data } = await axios.get('/user');
     dispatch({
@@ -63,6 +65,6 @@ export const signupUser = (newUserData, history) => async (dispatch) => {
 
 export const logoutUser = () => (dispatch) => {
   localStorage.removeItem('FBIdToken');
-  delete axios.defaults.common.Authorization;
+  delete axios.defaults.headers.common.Authorization;
   dispatch({ type: SET_UNAUTHENTICATED });
 };

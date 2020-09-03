@@ -44,10 +44,15 @@ const useStyles = makeStyles({
 });
 
 const Signup = () => {
+  // React-router
   const history = useHistory();
+
+  // Redux state
   const UI = useSelector((state) => state.UI);
   const { loading } = UI;
   const dispatch = useDispatch();
+
+  // React component local state
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -56,12 +61,17 @@ const Signup = () => {
   });
   const [errors, setErrors] = useState({});
   const { email, password, confirmPassword, handle } = form;
+
+  // MUI styling
   const classes = useStyles();
 
+  // side effects
+  // connect redux state to react component local state
   useEffect(() => {
     setErrors(UI.errors);
   }, [UI.errors]);
 
+  // handlers
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newUserData = {
