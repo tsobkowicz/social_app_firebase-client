@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import axios from 'axios';
 import { useHistory, Link } from 'react-router-dom';
 
 // MUI components
@@ -9,6 +8,10 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
+
+// Redux
+import { useSelector, useDispatch } from 'react-redux';
+import { signupUser } from '../redux/actions/userActions';
 
 // Icons and other stuff
 import AppIcon from '../images/icon.png';
@@ -42,35 +45,32 @@ const useStyles = makeStyles({
 
 const Signup = () => {
   const history = useHistory();
+  const UI = useSelector((state) => state.UI);
+  const { loading } = UI;
+  const dispatch = useDispatch();
   const [form, setForm] = useState({
     email: '',
     password: '',
     confirmPassword: '',
     handle: '',
   });
-  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
   const { email, password, confirmPassword, handle } = form;
   const classes = useStyles();
 
+  useEffect(() => {
+    setErrors(UI.errors);
+  }, [UI.errors]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
     const newUserData = {
       email,
       password,
       confirmPassword,
       handle,
     };
-    try {
-      const { data } = await axios.post('/signup', newUserData);
-      localStorage.setItem('FBIdToken', `Bearer ${data.token}`);
-      setLoading(false);
-      history.push('/');
-    } catch (err) {
-      setErrors(err.response.data);
-      setLoading(false);
-    }
+    dispatch(signupUser(newUserData, history));
   };
 
   const handleChange = (e) => {

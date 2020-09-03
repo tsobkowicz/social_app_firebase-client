@@ -61,7 +61,7 @@ const Login = () => {
     setErrors(UI.errors);
   }, [UI.errors]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const userData = {
       email,

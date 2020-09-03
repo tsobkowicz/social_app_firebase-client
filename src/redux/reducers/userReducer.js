@@ -5,7 +5,7 @@ const initialState = {
   authenticated: false,
   credentials: {},
   likes: [],
-  notifications: [],
+  notification: [],
 };
 
 export default function (state = initialState, action) {
