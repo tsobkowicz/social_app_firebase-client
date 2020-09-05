@@ -13,7 +13,6 @@ import {
 const setAuthorizationHeader = (token) => {
   const FBIdToken = `Bearer ${token}`;
   localStorage.setItem('FBIdToken', FBIdToken);
-  // eslint-disable-next-line dot-notation
   axios.defaults.headers.common.Authorization = FBIdToken;
 };
 
@@ -73,6 +72,16 @@ export const uploadImage = (formData) => async (dispatch) => {
   dispatch({ type: LOADING_USER });
   try {
     await axios.post('/user/image', formData);
+    dispatch(getUserData());
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const editUserDetails = (userDetails) => async (dispatch) => {
+  dispatch({ type: LOADING_USER });
+  try {
+    await axios.post('/user', userDetails);
     dispatch(getUserData());
   } catch (err) {
     console.log(err);

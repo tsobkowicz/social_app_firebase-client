@@ -22,6 +22,9 @@ import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
 import { useSelector, useDispatch } from 'react-redux';
 import { uploadImage, logoutUser } from '../redux/actions/userActions';
 
+// Components
+import EditDetails from './EditDetails';
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     padding: 20,
@@ -160,6 +163,7 @@ const Profile = () => {
               <KeyboardReturnIcon color="primary" />
             </IconButton>
           </Tooltip>
+          <EditDetails />
         </div>
       </Paper>
     ) : (
