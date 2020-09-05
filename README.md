@@ -4,6 +4,7 @@ This project is refactored to react hooks and uses different styling method of M
 
 ## Features:
 * React hooks
+* Redux hooks
 * [Matrial UI](https://material-ui.com/)
 * Create-React-App with extended ESLint config
 
