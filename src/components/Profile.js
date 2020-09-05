@@ -16,10 +16,11 @@ import LocationOn from '@material-ui/icons/LocationOn';
 import LinkIcon from '@material-ui/icons/Link';
 import CalendarToday from '@material-ui/icons/CalendarToday';
 import EditIcon from '@material-ui/icons/Edit';
+import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
-import { uploadImage } from '../redux/actions/userActions';
+import { uploadImage, logoutUser } from '../redux/actions/userActions';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -99,6 +100,10 @@ const Profile = () => {
     fileInput.click();
   };
 
+  const handleLogout = () => {
+    dispatch(logoutUser());
+  };
+
   // eslint-disable-next-line no-nested-ternary
   const profileMarkup = !loading ? (
     authenticated ? (
@@ -150,6 +155,11 @@ const Profile = () => {
             <CalendarToday color="primary" />{' '}
             <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>
           </div>
+          <Tooltip title="Logout" placement="top">
+            <IconButton onClick={handleLogout}>
+              <KeyboardReturnIcon color="primary" />
+            </IconButton>
+          </Tooltip>
         </div>
       </Paper>
     ) : (
