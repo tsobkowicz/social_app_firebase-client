@@ -8,8 +8,6 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Tooltip from '@material-ui/core/Tooltip';
-import IconButton from '@material-ui/core/IconButton';
 
 // Icons, images, etc.
 import EditIcon from '@material-ui/icons/Edit';
@@ -18,9 +16,11 @@ import EditIcon from '@material-ui/icons/Edit';
 import { useDispatch, useSelector } from 'react-redux';
 import { editUserDetails } from '../redux/actions/userActions';
 
+// Util
+import MyButton from '../util/MyButton';
+
 const useStyles = makeStyles({
   button: {
-    marginTop: 20,
     position: 'relative',
     float: 'right',
   },
@@ -85,11 +85,14 @@ const EditDetails = () => {
 
   return (
     <>
-      <Tooltip title="Edit details" placement="top">
-        <IconButton onClick={handleOpen} className={classes.button}>
-          <EditIcon color="primary" />
-        </IconButton>
-      </Tooltip>
+      <MyButton
+        tip="Edit details"
+        placement="top"
+        onClick={handleOpen}
+        btnClassName={classes.button}
+      >
+        <EditIcon color="primary" />
+      </MyButton>
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
         <DialogTitle>Edit your details</DialogTitle>
         <DialogContent>

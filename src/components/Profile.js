@@ -8,8 +8,6 @@ import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import MuiLink from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
 
 // Icons, images etc.
 import LocationOn from '@material-ui/icons/LocationOn';
@@ -24,6 +22,9 @@ import { uploadImage, logoutUser } from '../redux/actions/userActions';
 
 // Components
 import EditDetails from './EditDetails';
+
+// Utils
+import MyButton from '../util/MyButton';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -120,11 +121,14 @@ const Profile = () => {
               hidden="hidden"
               onChange={handleImageChange}
             />
-            <Tooltip title="Edit profile picture" placement="top">
-              <IconButton onClick={handleEditPicture} className="button">
-                <EditIcon color="primary" />
-              </IconButton>
-            </Tooltip>
+            <MyButton
+              tip="Edit profile picture"
+              placement="top"
+              onClick={handleEditPicture}
+              btnClassName="button"
+            >
+              <EditIcon color="primary" />
+            </MyButton>
           </div>
           <hr />
           <div className="profile-details">
@@ -158,11 +162,10 @@ const Profile = () => {
             <CalendarToday color="primary" />{' '}
             <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>
           </div>
-          <Tooltip title="Logout" placement="top">
-            <IconButton onClick={handleLogout}>
-              <KeyboardReturnIcon color="primary" />
-            </IconButton>
-          </Tooltip>
+
+          <MyButton tip="Logout" placement="top" onClick={handleLogout}>
+            <KeyboardReturnIcon color="primary" />
+          </MyButton>
           <EditDetails />
         </div>
       </Paper>
