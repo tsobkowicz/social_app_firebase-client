@@ -20,6 +20,9 @@ import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import { useSelector, useDispatch } from 'react-redux';
 import { likeScream, unlikeScream } from '../redux/actions/dataActions';
 
+// components
+import DeleteScream from './DeleteScream';
+
 // Utils
 import MyButton from '../util/MyButton';
 
@@ -27,6 +30,7 @@ const useStyles = makeStyles({
   card: {
     display: 'flex',
     marginBottom: 20,
+    position: 'relative',
   },
   content: {
     padding: 25,
@@ -51,7 +55,10 @@ const Scream = ({ scream }) => {
   // Redux
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const { authenticated } = user;
+  const {
+    authenticated,
+    credentials: { handle },
+  } = user;
 
   // Custom functions
   // check if the user already like this scream
@@ -86,6 +93,12 @@ const Scream = ({ scream }) => {
     </MyButton>
   );
 
+  // Logic for the delete button
+  const deleteButton =
+    authenticated && userHandle === handle ? (
+      <DeleteScream screamId={screamId} />
+    ) : null;
+
   return (
     <Card className={classes.card}>
       <CardMedia
@@ -102,6 +115,7 @@ const Scream = ({ scream }) => {
         >
           {userHandle}
         </Typography>
+        {deleteButton}
         <Typography variant="body2" color="textSecondary">
           {dayjs(createdAt).fromNow()}
         </Typography>
