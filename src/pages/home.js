@@ -1,29 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 // MUI components
 import Grid from '@material-ui/core/Grid';
-import axios from 'axios';
+
+// Redux
+import { useSelector, useDispatch } from 'react-redux';
+import { getScreams } from '../redux/actions/dataActions';
 
 // Components
 import Scream from '../components/Scream';
 import Profile from '../components/Profile';
 
 const Home = () => {
-  const [screams, setScreams] = useState(null);
+  // Redux
+  const data = useSelector((state) => state.data);
+  const dispatch = useDispatch();
+  const { screams, loading } = data;
 
+  // Side effects
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await axios.get(`/screams`);
-        setScreams(data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchData();
+    dispatch(getScreams());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const RecentScreamsMarkup = screams ? (
+  // Logic
+  const recentScreamsMarkup = !loading ? (
     /* eslint-disable prettier/prettier */
     screams.map((scream) => <Scream scream={scream} key={scream.screamId} />)
   ) : (
@@ -34,7 +35,7 @@ const Home = () => {
   return (
     <Grid container spacing={2}>
       <Grid item sm={8} xs={12}>
-        {RecentScreamsMarkup}
+        {recentScreamsMarkup}
       </Grid>
       <Grid item sm={4} xs={12}>
         <Profile />
