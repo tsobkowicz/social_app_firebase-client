@@ -57,7 +57,7 @@ const DeleteScream = ({ screamId }) => {
         onClick={handleOpenFunc}
         btnClassName={classes.deleteButton}
       >
-        <DeleteOutline color="primary" />
+        <DeleteOutline color="secondary" />
       </MyButton>
       <Dialog open={open} onClose={handleCloseFunc} fullWidth maxWidth="sm">
         <DialogTitle>Are you sure you want to delete this scream ?</DialogTitle>
