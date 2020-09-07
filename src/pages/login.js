@@ -100,8 +100,8 @@ const Login = () => {
             type="email"
             label="email"
             value={email}
-            helperText={errors.email}
-            error={!!errors.email}
+            helperText={errors?.email}
+            error={!!errors?.email}
             onChange={handleChange}
             fullWidth
             className={classes.textField}
@@ -112,15 +112,15 @@ const Login = () => {
             type="password"
             label="password"
             value={password}
-            helperText={errors.password}
-            error={!!errors.password}
+            helperText={errors?.password}
+            error={!!errors?.password}
             onChange={handleChange}
             fullWidth
             className={classes.textField}
           />
-          {errors.general && (
+          {errors?.general && (
             <Typography variant="body2" className={classes.customError}>
-              {errors.general}
+              {errors?.general}
             </Typography>
           )}
           <Button

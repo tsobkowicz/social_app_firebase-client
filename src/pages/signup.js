@@ -103,8 +103,8 @@ const Signup = () => {
             type="email"
             label="email"
             value={email}
-            helperText={errors.email}
-            error={!!errors.email}
+            helperText={errors?.email}
+            error={!!errors?.email}
             onChange={handleChange}
             fullWidth
             className={classes.textField}
@@ -115,8 +115,8 @@ const Signup = () => {
             type="password"
             label="password"
             value={password}
-            helperText={errors.password}
-            error={!!errors.password}
+            helperText={errors?.password}
+            error={!!errors?.password}
             onChange={handleChange}
             fullWidth
             className={classes.textField}
@@ -127,8 +127,8 @@ const Signup = () => {
             type="password"
             label="confirm password"
             value={confirmPassword}
-            helperText={errors.confirmPassword}
-            error={!!errors.confirmPassword}
+            helperText={errors?.confirmPassword}
+            error={!!errors?.confirmPassword}
             onChange={handleChange}
             fullWidth
             className={classes.textField}
@@ -139,15 +139,15 @@ const Signup = () => {
             type="text"
             label="handle"
             value={handle}
-            helperText={errors.handle}
-            error={!!errors.handle}
+            helperText={errors?.handle}
+            error={!!errors?.handle}
             onChange={handleChange}
             fullWidth
             className={classes.textField}
           />
-          {errors.general && (
+          {errors?.general && (
             <Typography variant="body2" className={classes.customError}>
-              {errors.general}
+              {errors?.general}
             </Typography>
           )}
           <Button
