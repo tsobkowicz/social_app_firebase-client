@@ -15,7 +15,7 @@ import CloseIcon from '@material-ui/icons/Close';
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
-import { postScream } from '../redux/actions/dataActions';
+import { postScream, clearErrors } from '../redux/actions/dataActions';
 
 // Components, utils
 import MyButton from '../util/MyButton';
@@ -26,11 +26,13 @@ const useStyles = makeStyles({
   },
   closeButton: {
     position: 'absolute',
-    left: '90%',
-    top: '10%',
+    left: '91%',
+    top: '6%',
   },
   submitButton: {
     postition: 'relative',
+    float: 'right',
+    marginTop: 10,
   },
   progressSpiner: {
     position: 'absolute',
@@ -46,12 +48,6 @@ const PostScream = () => {
   const [body, setBody] = useState('');
   const [errors, setErrors] = useState(null);
 
-  // const [form, setForm] = useState({
-  //   body: '',
-  //   errors: {},
-  // });
-  // const { body, errors } = form;
-
   // Redux
   const UI = useSelector((state) => state.UI);
   const dispatch = useDispatch();
@@ -61,6 +57,7 @@ const PostScream = () => {
     setOpen(true);
   };
   const handleClose = () => {
+    dispatch(clearErrors());
     setOpen(false);
     setErrors({});
   };

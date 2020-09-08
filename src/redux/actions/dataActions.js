@@ -58,3 +58,7 @@ export const deleteScream = (screamId) => async (dispatch) => {
     console.log(err);
   }
 };
+
+export const clearErrors = () => (dispatch) => {
+  dispatch({ type: CLEAR_ERRORS });
+};
