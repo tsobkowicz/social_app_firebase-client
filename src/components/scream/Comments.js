@@ -35,7 +35,7 @@ const Comments = ({ comments }) => {
 
   return (
     <Grid container>
-      {comments.map((comment, index) => {
+      {comments?.map((comment, index) => {
         const { body, createdAt, userImage, userHandle } = comment;
         return (
           <React.Fragment key={createdAt}>
@@ -78,7 +78,7 @@ const Comments = ({ comments }) => {
 };
 
 Comments.propTypes = {
-  comments: PropTypes.array.isRequired,
+  comments: PropTypes.array,
 };
 
 export default Comments;

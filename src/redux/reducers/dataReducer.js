@@ -6,6 +6,7 @@ import {
   DELETE_SCREAM,
   POST_SCREAM,
   SET_SCREAM,
+  SUBMIT_COMMENT,
 } from '../types';
 
 const initialState = {
@@ -40,7 +41,7 @@ export default function (state = initialState, action) {
       state.screams[index] = action.payload;
       // check and upadte scream state while open scream details
       if (state.scream.screamId === action.payload.screamId) {
-        state.scream = action.payload;
+        state.scream.likeCount = action.payload.likeCount;
       }
       return {
         ...state,
@@ -61,6 +62,22 @@ export default function (state = initialState, action) {
         ...state,
         screams: [action.payload, ...state.screams],
       };
+    case SUBMIT_COMMENT: {
+      const currentScreamIndex = state.screams.findIndex(
+        (scream) => scream.screamId === action.payload.screamId
+      );
+      // eslint-disable-next-line no-plusplus
+      state.screams[currentScreamIndex].commentCount++;
+      return {
+        ...state,
+        screams: [...state.screams],
+        scream: {
+          ...state.scream,
+          commentCount: state.scream.commentCount + 1,
+          comments: [action.payload, ...state.scream.comments],
+        },
+      };
+    }
     default:
       return state;
   }
