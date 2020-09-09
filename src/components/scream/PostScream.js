@@ -15,10 +15,10 @@ import CloseIcon from '@material-ui/icons/Close';
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
-import { postScream, clearErrors } from '../redux/actions/dataActions';
+import { postScream, clearErrors } from '../../redux/actions/dataActions';
 
 // Components, utils
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 
 const useStyles = makeStyles({
   textField: {

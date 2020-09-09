@@ -14,10 +14,10 @@ import EditIcon from '@material-ui/icons/Edit';
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
-import { editUserDetails } from '../redux/actions/userActions';
+import { editUserDetails } from '../../redux/actions/userActions';
 
 // Util
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 
 const useStyles = makeStyles({
   button: {

@@ -15,8 +15,8 @@ import Notifications from '@material-ui/icons/Notifications';
 import { useSelector } from 'react-redux';
 
 // Components, utils
-import MyButton from '../util/MyButton';
-import PostScream from './PostScream';
+import MyButton from '../../util/MyButton';
+import PostScream from '../scream/PostScream';
 
 const useStyles = makeStyles({
   toolbar: {

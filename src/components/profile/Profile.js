@@ -18,13 +18,13 @@ import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
-import { uploadImage, logoutUser } from '../redux/actions/userActions';
+import { uploadImage, logoutUser } from '../../redux/actions/userActions';
 
 // Components
 import EditDetails from './EditDetails';
 
 // Utils
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 
 const useStyles = makeStyles((theme) => ({
   paper: {

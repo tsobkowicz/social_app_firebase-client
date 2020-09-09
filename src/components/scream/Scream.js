@@ -20,7 +20,7 @@ import { useSelector } from 'react-redux';
 // components, utils
 import DeleteScream from './DeleteScream';
 import ScreamDialog from './ScreamDialog';
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 import LikeButton from './LikeButton';
 
 const useStyles = makeStyles({

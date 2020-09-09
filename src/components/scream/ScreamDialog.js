@@ -18,11 +18,12 @@ import ChatIcon from '@material-ui/icons/Chat';
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
-import { getScream } from '../redux/actions/dataActions';
+import { getScream } from '../../redux/actions/dataActions';
 
 // Components, utils
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 import LikeButton from './LikeButton';
+import Comments from './Comments';
 
 const useStyles = makeStyles({
   expandButton: {
@@ -43,6 +44,11 @@ const useStyles = makeStyles({
     border: 'none',
     margin: 4,
   },
+  visibleSeparator: {
+    width: '100%',
+    borderBottom: '1px solid rgba(0,0,0,0.1)',
+    marginBottom: 20,
+  },
   dialogContent: {
     padding: 20,
   },
@@ -60,7 +66,14 @@ const ScreamDialog = ({ screamId, userHandle }) => {
   // Redux
   const loading = useSelector((state) => state.UI.loading);
   const scream = useSelector((state) => state.data.scream);
-  const { body, createdAt, likeCount, commentCount, userImage } = scream;
+  const {
+    body,
+    createdAt,
+    likeCount,
+    commentCount,
+    userImage,
+    comments,
+  } = scream;
   const dispatch = useDispatch();
 
   // MUI styling
@@ -107,6 +120,8 @@ const ScreamDialog = ({ screamId, userHandle }) => {
         </MyButton>
         <span>{commentCount} comments</span>
       </Grid>
+      <hr className={classes.visibleSeparator} />
+      <Comments comments={comments} />
     </Grid>
   );
 

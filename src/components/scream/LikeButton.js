@@ -8,10 +8,10 @@ import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
-import { likeScream, unlikeScream } from '../redux/actions/dataActions';
+import { likeScream, unlikeScream } from '../../redux/actions/dataActions';
 
 // components, utils
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 
 const LikeButton = ({ screamId }) => {
   // Redux
