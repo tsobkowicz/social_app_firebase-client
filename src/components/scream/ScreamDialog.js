@@ -63,6 +63,8 @@ const useStyles = makeStyles({
 const ScreamDialog = ({ screamId, userHandle, openDialog }) => {
   // React local state
   const [open, setOpen] = useState(false);
+  const [oldUrl, setOldUrl] = useState('');
+  const [newUrl, setNewUrl] = useState('');
 
   // Redux
   const loading = useSelector((state) => state.UI.loading);
@@ -82,10 +84,20 @@ const ScreamDialog = ({ screamId, userHandle, openDialog }) => {
 
   // handlers
   const handleOpen = () => {
+    // logic for changing URL while openDialog is true
+    let oldPath = window.location.pathname;
+    const newPath = `/users/${userHandle}/scream/${screamId}`;
+    // handle edge case where you copy paste URL
+    if (oldPath === newPath) oldPath = `/users/${userHandle}`;
+    window.history.pushState(null, null, newPath);
+
     setOpen(true);
+    setOldUrl(oldPath);
+    setNewUrl(newPath);
     dispatch(getScream(screamId));
   };
   const handleClose = () => {
+    window.history.pushState(null, null, oldUrl);
     setOpen(false);
     dispatch(clearErrors());
   };
