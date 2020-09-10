@@ -64,6 +64,7 @@ const ScreamDialog = ({ screamId, userHandle, openDialog }) => {
   // React local state
   const [open, setOpen] = useState(false);
   const [oldUrl, setOldUrl] = useState('');
+  // eslint-disable-next-line no-unused-vars
   const [newUrl, setNewUrl] = useState('');
 
   // Redux

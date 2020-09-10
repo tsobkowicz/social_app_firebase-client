@@ -9,7 +9,6 @@ import Button from '@material-ui/core/Button';
 
 // Icons, images, etc.
 import HomeIcon from '@material-ui/icons/Home';
-import Notifications from '@material-ui/icons/Notifications';
 
 // Redux
 import { useSelector } from 'react-redux';
@@ -17,6 +16,7 @@ import { useSelector } from 'react-redux';
 // Components, utils
 import MyButton from '../../util/MyButton';
 import PostScream from '../scream/PostScream';
+import Notifications from './Notifications';
 
 const useStyles = makeStyles({
   toolbar: {
@@ -45,9 +45,7 @@ const Navbar = () => {
                 <HomeIcon />
               </MyButton>
             </Link>
-            <MyButton tip="Notifications">
-              <Notifications />
-            </MyButton>
+            <Notifications />
           </>
         ) : (
           <>

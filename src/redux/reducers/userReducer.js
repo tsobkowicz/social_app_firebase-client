@@ -5,6 +5,7 @@ import {
   LOADING_USER,
   LIKE_SCREAM,
   UNLIKE_SCREAM,
+  MARK_NOTIFICATIONS_READ,
 } from '../types';
 
 // initial state for userReducer NOT for global state (user: userReducer in combineReducer objenct)
@@ -54,6 +55,12 @@ export default function (state = initialState, action) {
           (like) => like.screamId !== action.payload.screamId
         ),
       };
+    case MARK_NOTIFICATIONS_READ: {
+      state.notification.forEach((not) => (not.read = true));
+      return {
+        ...state,
+      };
+    }
     default:
       return state;
   }
