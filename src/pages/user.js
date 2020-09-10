@@ -13,7 +13,11 @@ import StaticProfile from '../components/profile/StaticProfile';
 const User = () => {
   // React local state
   const [profile, setProfile] = useState(null);
+  const [screamIdParam, setScreamIdParam] = useState(null);
+  // React router
+  // check for params in URL
   const { handle } = useParams();
+  const { screamId } = useParams();
 
   // Redux state
   const data = useSelector((state) => state.data);
@@ -22,12 +26,11 @@ const User = () => {
 
   // Side effects
   useEffect(() => {
+    if (screamId) setScreamIdParam(screamId);
     dispatch(getUserData(handle));
     const fetchUserHandle = async () => {
       try {
         const result = await axios.get(`/user/${handle}`);
-        console.log(result);
-        console.log(handle);
         setProfile(result.data.user);
       } catch (err) {
         console.log(err);
@@ -41,10 +44,18 @@ const User = () => {
   // eslint-disable-next-line no-nested-ternary
   const screamsMarkup = loading ? (
     <p>Loading data...</p>
-  ) : screams === null ? (
+  ) : // eslint-disable-next-line no-nested-ternary
+  screams === null ? (
     <p>No screams from this user</p>
-  ) : (
+  ) : !screamIdParam ? (
     screams.map((scream) => <Scream key={scream.screamId} scream={scream} />)
+  ) : (
+    screams.map((scream) => {
+      if (scream.screamId !== screamIdParam) {
+        return <Scream key={scream.screamId} scream={scream} />;
+      }
+      return <Scream key={scream.screamId} scream={scream} openDialog />;
+    })
   );
 
   return (

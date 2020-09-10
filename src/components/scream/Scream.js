@@ -38,7 +38,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Scream = ({ scream }) => {
+const Scream = ({ scream, openDialog }) => {
   const {
     body,
     createdAt,
@@ -95,7 +95,11 @@ const Scream = ({ scream }) => {
           <ChatIcon color="primary" />
         </MyButton>
         <span>{commentCount} comments</span>
-        <ScreamDialog screamId={screamId} userHandle={userHandle} />
+        <ScreamDialog
+          screamId={screamId}
+          userHandle={userHandle}
+          openDialog={openDialog}
+        />
       </CardContent>
     </Card>
   );
@@ -111,6 +115,7 @@ Scream.propTypes = {
     likeCount: PropTypes.number,
     commentCount: PropTypes.number,
   }),
+  openDialog: PropTypes.bool,
 };
 
 export default Scream;

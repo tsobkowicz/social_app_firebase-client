@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
@@ -60,7 +60,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ScreamDialog = ({ screamId, userHandle }) => {
+const ScreamDialog = ({ screamId, userHandle, openDialog }) => {
   // React local state
   const [open, setOpen] = useState(false);
 
@@ -89,6 +89,14 @@ const ScreamDialog = ({ screamId, userHandle }) => {
     setOpen(false);
     dispatch(clearErrors());
   };
+
+  // Side effects
+  useEffect(() => {
+    if (openDialog) {
+      handleOpen();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // logic
   const dialogMarkup = loading ? (
@@ -156,6 +164,7 @@ const ScreamDialog = ({ screamId, userHandle }) => {
 ScreamDialog.propTypes = {
   screamId: PropTypes.string.isRequired,
   userHandle: PropTypes.string.isRequired,
+  openDialog: PropTypes.bool,
 };
 
 export default ScreamDialog;
