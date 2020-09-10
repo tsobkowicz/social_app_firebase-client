@@ -89,3 +89,13 @@ export const deleteScream = (screamId) => async (dispatch) => {
     console.log(err);
   }
 };
+
+export const getUserData = (userHandle) => async (dispatch) => {
+  try {
+    dispatch({ type: LOADING_DATA });
+    const { data } = await axios.get(`/user/${userHandle}`);
+    dispatch({ type: SET_SCREAMS, payload: data.screams });
+  } catch {
+    dispatch({ type: SET_ERRORS, payload: null });
+  }
+};

@@ -56,7 +56,7 @@ const Comments = ({ comments }) => {
                       to={`/users/${userHandle}`}
                       color="primary"
                     >
-                      @{userHandle}
+                      {userHandle}
                     </Typography>
                     <Typography variant="body2" color="textPrimary">
                       {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}

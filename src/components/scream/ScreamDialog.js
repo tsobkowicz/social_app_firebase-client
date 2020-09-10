@@ -107,7 +107,7 @@ const ScreamDialog = ({ screamId, userHandle }) => {
           component={Link}
           to={`/users/${userHandle}`}
         >
-          @{userHandle}
+          {userHandle}
         </Typography>
         <hr className={classes.invisibleSeparator} />
         <Typography variant="body2" color="textSecondary">
