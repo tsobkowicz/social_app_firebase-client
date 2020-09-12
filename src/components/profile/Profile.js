@@ -22,6 +22,7 @@ import { uploadImage, logoutUser } from '../../redux/actions/userActions';
 
 // Components
 import EditDetails from './EditDetails';
+import ProfileSkeleton from '../../util/ProfileSkeleton';
 
 // Utils
 import MyButton from '../../util/MyButton';
@@ -195,7 +196,7 @@ const Profile = () => {
       </Paper>
     )
   ) : (
-    <p>loading...</p>
+    <ProfileSkeleton />
   );
   return profileMarkup;
 };

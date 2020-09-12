@@ -10,6 +10,7 @@ import { getScreams } from '../redux/actions/dataActions';
 // Components
 import Scream from '../components/scream/Scream';
 import Profile from '../components/profile/Profile';
+import ScreamSkeleton from '../util/ScreamSkeleton';
 
 const Home = () => {
   // Redux
@@ -28,7 +29,7 @@ const Home = () => {
     /* eslint-disable prettier/prettier */
     screams.map((scream) => <Scream scream={scream} key={scream.screamId} />)
   ) : (
-      <p>Loading...</p>
+      <ScreamSkeleton />
     );
   /* eslint-enable prettier/prettier */
 

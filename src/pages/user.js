@@ -9,6 +9,8 @@ import { getUserData } from '../redux/actions/dataActions';
 // Components
 import Scream from '../components/scream/Scream';
 import StaticProfile from '../components/profile/StaticProfile';
+import ScreamSkeleton from '../util/ScreamSkeleton';
+import ProfileSkeleton from '../util/ProfileSkeleton';
 
 const User = () => {
   // React local state
@@ -43,7 +45,7 @@ const User = () => {
   // logic
   // eslint-disable-next-line no-nested-ternary
   const screamsMarkup = loading ? (
-    <p>Loading data...</p>
+    <ScreamSkeleton />
   ) : // eslint-disable-next-line no-nested-ternary
   screams === null ? (
     <p>No screams from this user</p>
@@ -65,7 +67,7 @@ const User = () => {
       </Grid>
       <Grid item sm={4} xs={12}>
         {profile === null ? (
-          <p>Loading profile...</p>
+          <ProfileSkeleton />
         ) : (
           <StaticProfile profile={profile} />
         )}
