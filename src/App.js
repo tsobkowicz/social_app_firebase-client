@@ -38,6 +38,8 @@ const theme = createMuiTheme({
   },
 });
 
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+
 const token = localStorage.FBIdToken;
 if (token) {
   const decodedToken = jwtDecode(token);
